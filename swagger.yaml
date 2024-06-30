@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: Insurance API
+  description: API for Insurance Operations
+  version: 1.0.0
+servers:
+  - url: http://localhost:7000/api/v1
+paths:
+  /task-csv/import-csv:
+    post:
+      summary: Import CSV file containing insurance data
+      description: Upload a CSV file to import insurance data into the system.
+      operationId: importCsv
+      requestBody:
+        description: CSV file to upload
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The CSV file to be uploaded
+      responses:
+        '200':
+          description: Successfully imported CSV data
+        '500':
+          description: Internal Server Error
+  /task-csv/search-policy/{policyHolder}:
+    get:
+      summary: Fetch policies by policy holder name
+      description: Retrieve a list of policies for a given policy holder.
+      operationId: fetchPolicies
+      parameters:
+        - name: policyHolder
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name of the policy holder
+      responses:
+        '200':
+          description: Successfully fetched policies
+        '404':
+          description: Policies not found
+        '500':
+          description: Internal Server Error
+  /task-csv/policy:
+    get:
+      summary: Retrieve policy data
+      description: Get detailed information about a specific policy.
+      operationId: policyData
+      responses:
+        '200':
+          description: Successfully retrieved policy data
+        '404':
+          description: Policy not found
+        '500':
+          description: Internal Server Error
+  /task-2/schedule-message:
+    post:
+      summary: Schedule a message
+      description: Schedule a message to be sent at a specified time and day of the week.
+      operationId: scheduleMessage
+      requestBody:
+        description: Details of the message to be scheduled
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The content of the message to be scheduled
+                scheduledDay:
+                  type: integer
+                  description: Day of the week to send the message (0 for Sunday, 1 for Monday, etc.)
+                scheduledTime:
+                  type: string
+                  description: Time to send the message in 24-hour format (HH:MM)
+      responses:
+        '200':
+          description: Message scheduled successfully
+        '500':
+          description: Internal Server Error

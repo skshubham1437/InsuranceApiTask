@@ -1,0 +1,51 @@
+{
+  "name": "node-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "set NODE_ENV=development&&nodemon ./bin/www",
+    "start:devPm2": "pm2 start npm --name 'insuranceApi' ./bin/www --watch",
+    "start:stage": "export NODE_ENV=stage&&node ./bin/www",
+    "start:test": "set NODE_ENV=development&&pm2 start ./bin/www --name 'Template'",
+    "start:prod": "set NODE_ENV=production&&node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Codebucket-Solutions/node-template.git"
+  },
+  "author": "Codebucket Solutions Pvt. Ltd.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Codebucket-Solutions/node-template/issues"
+  },
+  "homepage": "https://github.com/Codebucket-Solutions/node-template#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "camelcase-keys": "^7.0.1",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.2.0",
+    "formidable": "^2.1.1",
+    "helmet": "^6.0.1",
+    "humps": "^2.0.1",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "moment-timezone": "^0.5.40",
+    "mongoose": "^8.2.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "node-schedule": "^2.1.1",
+    "os-utils": "^0.0.14",
+    "pm2": "^5.4.1",
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "plop": "^3.1.1",
+    "prettier": "^3.2.5"
+  }
+}
